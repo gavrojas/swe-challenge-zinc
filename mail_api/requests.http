@@ -1,0 +1,47 @@
+#? Users
+GET http://localhost:8080/users
+
+###
+GET http://localhost:8080/users/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZWF0IjoxNzMxNjMyNjg4LCJpYXQiOjE3MzE2MzI2Mjh9LCJzZXNzaW9uIjoiOThjODFiNTctNDEwMy01Y2RjLWE4NWEtYmI0YTU2YzBjZmNkIn0.-LP2BSdUkDbVhU-CmynR40HhDmyrBK1wKIVnhy1AZ20
+
+
+###
+GET http://localhost:8080/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZWF0IjoxNzMxNjMyNjg4LCJpYXQiOjE3MzE2MzI2Mjh9LCJzZXNzaW9uIjoiOThjODFiNTctNDEwMy01Y2RjLWE4NWEtYmI0YTU2YzBjZmNkIn0.-LP2BSdUkDbVhU-CmynR40HhDmyrBK1wKIVnhy1AZ20
+
+
+###
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "username":"Gabi9",
+  "password":"12345"
+}
+
+###
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username":"Gabi9",
+  "password":"12345"
+}
+
+###
+POST https://trucode-gavrojas.serveftp.com/auth/login
+Content-Type: application/json
+
+{
+  "username":"Gabi@trucode.com",
+  "password":"12345"
+}
+
+###
+GET https://trucode-gavrojas.serveftp.com/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZWF0IjoxNzMxOTA5MzE1LCJpYXQiOjE3MzE5MDc1MTV9LCJzZXNzaW9uIjoiOThjODFiNTctNDEwMy01Y2RjLWE4NWEtYmI0YTU2YzBjZmNkIn0.aCJA-_P-4BC2NQdBU0UrhoU1jBe0U0kxiIlG0Zv3jQw
+
+###
+GET https://trucode-gavrojas.serveftp.com/filters/load
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZWF0IjoxNzMxOTA5MzE1LCJpYXQiOjE3MzE5MDc1MTV9LCJzZXNzaW9uIjoiOThjODFiNTctNDEwMy01Y2RjLWE4NWEtYmI0YTU2YzBjZmNkIn0.aCJA-_P-4BC2NQdBU0UrhoU1jBe0U0kxiIlG0Zv3jQw
