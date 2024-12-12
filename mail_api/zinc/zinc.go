@@ -12,7 +12,6 @@ import (
 const (
 	ZINC_URL         = "http://zinc:4080/api"
 	ZINC_INDEX_USERS = "users"
-	ZINC_INDEX_EMAIL = "email"
 	ZINC_USERNAME    = "admin"
 	ZINC_PASSWORD    = "Complexpass#123"
 )
