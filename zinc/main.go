@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"index_data_zinc/config"
 	"index_data_zinc/mails"
@@ -8,9 +9,57 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"runtime"
+	"runtime/pprof"
+
+	_ "net/http/pprof"
 )
 
+var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to `file`")
+var memprofile = flag.String("memprofile", "", "write memory profile to `file`")
+var goroutineprofile = flag.String("goroutineprofile", "", "write goroutine profile to `file`")
+
 func main() {
+	// Profilling cpu
+	flag.Parse()
+	if *cpuprofile != "" {
+		f, err := os.Create(*cpuprofile)
+		if err != nil {
+			log.Fatal("could not create CPU profile: ", err)
+		}
+		defer f.Close() // error handling omitted for example
+		if err := pprof.StartCPUProfile(f); err != nil {
+			log.Fatal("could not start CPU profile: ", err)
+		}
+		defer pprof.StopCPUProfile()
+	}
+
+	// Profilling goroutines
+	if *goroutineprofile != "" {
+		f, err := os.Create(*goroutineprofile)
+		if err != nil {
+			log.Fatal("could not create goroutine profile: ", err)
+		}
+		defer f.Close()
+		runtime.GC() // Forcing garbage collection to get up-to-date statistics
+		if err := pprof.Lookup("goroutine").WriteTo(f, 0); err != nil {
+			log.Fatal("could not write goroutine profile: ", err)
+		}
+	}
+
+	// Profilling memory
+	if *memprofile != "" {
+		f, err := os.Create(*memprofile)
+		if err != nil {
+			log.Fatal("could not create memory profile: ", err)
+		}
+		defer f.Close() // error handling omitted for example
+		runtime.GC()    // get up-to-date statistics
+		if err := pprof.WriteHeapProfile(f); err != nil {
+			log.Fatal("could not write memory profile: ", err)
+		}
+	}
+
 	// Verificar que se haya pasado un argumento
 	if len(os.Args) < 2 {
 		log.Fatalf("Usage: %s <data_directory>\n", os.Args[0])

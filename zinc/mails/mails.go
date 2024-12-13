@@ -62,7 +62,6 @@ func ProcessEmails(mailDir string) error {
 			totalEmails++
 
 			// When batch reaches specified size, send to Zinc
-			fmt.Println("len de batch", len(batch))
 			if len(batch) > 0 {
 				files <- batch
 				batch = nil // Reiniciar el lote
