@@ -22,16 +22,16 @@
 </script>
 
 <template>
-  <div class="flex">
+  <div class="flex h-full">
     <Sidebar />
-    <div class="flex">
+    <div class="flex flex-1">
       <EmailList @selectEmail="selectEmail" />
       
       <!-- Solo muestra EmailView si hay correos y uno está seleccionado -->
       <EmailView :selectedEmail="selectedEmail" v-if="selectedEmail" />
       
       <!-- Mensaje si no hay correos disponibles -->
-      <div v-else class="p-4 text-gray-500">
+      <div v-else class="p-4 text-gray-500 flex items-center justify-center w-full">
         <p v-if="!hasEmails">No emails available. Please load emails.</p>
         <p v-else>Please select an email to view its details.</p>
       </div>
