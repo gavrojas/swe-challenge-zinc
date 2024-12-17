@@ -1,0 +1,14 @@
+#!/bin/bash
+PORT=5173  # Valor por defecto
+
+# Procesar argumentos
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -port) PORT="$2"; shift ;;
+        *) echo "Opción desconocida: $1" ;;
+    esac
+    shift
+done
+
+# Ejecutar el comando npm con el puerto especificado
+npm run dev -- --port $PORT
