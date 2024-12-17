@@ -1,5 +1,6 @@
 zinc/data/enron_mail_20110402.tgz
 zinc/data/enron_mail_20110402
+mail_api/.env
 enron_mail_20110402_test
 mail_tools/.env
 swe-challenge-pair.pem
