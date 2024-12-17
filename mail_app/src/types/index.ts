@@ -1,3 +1,18 @@
+export interface JWTPayload {
+  MapClaims: {
+    eat: number
+    iat: number
+  }
+  session: string
+}
+
+export interface OptionsApiCall {
+  method?: string
+  data?: any
+  headers?: any
+  notifyLogout?: boolean
+}
+
 export interface EmailDocument {
   message_id: string;
   date: string;

@@ -13,7 +13,7 @@ import (
 
 func GetAllUsers(w http.ResponseWriter, r *http.Request) {
 	query := `{"query": {"match_all": {}}}`
-	body, err := zinc.HTTPRequestHelper("POST", "_search", []byte(query), false)
+	body, err := zinc.HTTPRequestHelper("POST", "_search", []byte(query), false, false)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -26,7 +26,7 @@ func GetAllUsers(w http.ResponseWriter, r *http.Request) {
 
 func GetUserById(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
-	body, err := zinc.HTTPRequestHelper("GET", "_doc/"+id, nil, false)
+	body, err := zinc.HTTPRequestHelper("GET", "_doc/"+id, nil, false, false)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -68,7 +68,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	userJSON, _ := json.Marshal(user)
-	body, err := zinc.HTTPRequestHelper("POST", "_doc", userJSON, false)
+	body, err := zinc.HTTPRequestHelper("POST", "_doc", userJSON, false, false)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -80,7 +80,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 
 func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
-	_, err := zinc.HTTPRequestHelper("DELETE", "_doc/"+id, nil, false)
+	_, err := zinc.HTTPRequestHelper("DELETE", "_doc/"+id, nil, false, false)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -98,7 +98,7 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	userJSON, _ := json.Marshal(user)
-	body, err := zinc.HTTPRequestHelper("PUT", "_doc/"+id, userJSON, false)
+	body, err := zinc.HTTPRequestHelper("PUT", "_doc/"+id, userJSON, false, false)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

@@ -10,10 +10,11 @@ import (
 )
 
 const (
-	ZINC_URL         = "http://zinc:4080/api"
-	ZINC_INDEX_USERS = "users"
-	ZINC_USERNAME    = "admin"
-	ZINC_PASSWORD    = "Complexpass#123"
+	ZINC_URL          = "http://zinc:4080/api"
+	ZINC_INDEX_USERS  = "users"
+	ZINC_INDEX_EMAILS = "enron_emails"
+	ZINC_USERNAME     = "admin"
+	ZINC_PASSWORD     = "Complexpass#123"
 )
 
 func IndexExists(indexName string) (bool, error) {
@@ -26,7 +27,7 @@ func IndexExists(indexName string) (bool, error) {
 	}`, ZINC_USERNAME)
 
 	// Hacer la solicitud HTTP para verificar la existencia del índice
-	respBody, err := HTTPRequestHelper("POST", "_search", []byte(existsQuery), false)
+	respBody, err := HTTPRequestHelper("POST", "_search", []byte(existsQuery), false, false)
 	if err != nil {
 		return false, nil
 	}
@@ -48,10 +49,12 @@ func IndexExists(indexName string) (bool, error) {
 }
 
 // Generic HTTP request to ZincSearch
-func HTTPRequestHelper(method, path string, body []byte, create bool) ([]byte, error) {
+func HTTPRequestHelper(method, path string, body []byte, create_index bool, get_mails bool) ([]byte, error) {
 	var url string
-	if create {
+	if create_index {
 		url = fmt.Sprintf("%s/%s", ZINC_URL, path)
+	} else if get_mails {
+		url = fmt.Sprintf("%s/%s/%s", ZINC_URL, ZINC_INDEX_EMAILS, path)
 	} else {
 		url = fmt.Sprintf("%s/%s/%s", ZINC_URL, ZINC_INDEX_USERS, path)
 	}
@@ -114,7 +117,7 @@ func CreateIndex(name string) error {
 		}
 	}`, name)
 
-	respBody, err := HTTPRequestHelper("POST", "index", []byte(indexBody), true)
+	respBody, err := HTTPRequestHelper("POST", "index", []byte(indexBody), true, false)
 	if err != nil {
 		return fmt.Errorf("error creating index: %w", err)
 	}

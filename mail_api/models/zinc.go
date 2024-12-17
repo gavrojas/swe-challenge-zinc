@@ -6,6 +6,7 @@ type SearchUserResponse struct {
 			Value int `json:"value"`
 		} `json:"total"`
 		Hits []struct {
+			ID     string `json:"id"`
 			Source struct {
 				Username string `json:"username"`
 				Password string `json:"password"`

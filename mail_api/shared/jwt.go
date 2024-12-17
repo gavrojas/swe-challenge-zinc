@@ -17,6 +17,8 @@ type Payload struct {
 func GetTokenFromRequest(r *http.Request) string {
 	bearerToken := r.Header.Get("Authorization")
 	tokenSlice := strings.Split(bearerToken, " ")
+	fmt.Println("bearer ", bearerToken)
+	fmt.Println("slice", tokenSlice)
 	if len(tokenSlice) == 2 {
 		return tokenSlice[1]
 	}

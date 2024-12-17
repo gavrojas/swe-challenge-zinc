@@ -11,6 +11,7 @@ import (
 	"mail_indexer_zinc/shared"
 	"mail_indexer_zinc/zinc"
 
+	"github.com/gofrs/uuid/v5"
 	"github.com/golang-jwt/jwt/v5"
 
 	"golang.org/x/crypto/bcrypt"
@@ -34,7 +35,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("query: ", query)
 
-	body, err := zinc.HTTPRequestHelper("POST", "_search", []byte(query), false)
+	body, err := zinc.HTTPRequestHelper("POST", "_search", []byte(query), false, false)
 	fmt.Println("body: ", body)
 	fmt.Println("Query bytes: ", []byte(query))
 
@@ -74,7 +75,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	userJSON, _ := json.Marshal(user)
 
 	// Almacenar el usuario en ZincSearch
-	responseBody, err := zinc.HTTPRequestHelper("POST", "_doc", userJSON, false)
+	responseBody, err := zinc.HTTPRequestHelper("POST", "_doc", userJSON, false, false)
 	if err != nil {
 		http.Error(w, "Error creating user", http.StatusInternalServerError)
 		return
@@ -112,7 +113,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		}
 	}`, userInput.Username)
 
-	body, err := zinc.HTTPRequestHelper("POST", "_search", []byte(query), false)
+	body, err := zinc.HTTPRequestHelper("POST", "_search", []byte(query), false, false)
 	if err != nil {
 		http.Error(w, "Error checking user credentials", http.StatusInternalServerError)
 		return
@@ -132,7 +133,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	for _, hit := range searchResponse.Hits.Hits {
 		if hit.Source.Username == userInput.Username {
 			user = models.User{
-				Username: hit.Source.Username,
+				ID:       hit.ID,
 				Password: hit.Source.Password,
 			}
 			userFound = true
@@ -151,10 +152,22 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	claims := jwt.MapClaims{
-		"iat":      jwt.NewNumericDate(time.Now()),                       // issued at
-		"eat":      jwt.NewNumericDate(time.Now().Add(30 * time.Minute)), // expiration time
-		"username": user.Username,
+	sessionToken := uuid.NewV5(uuid.UUID{}, "session").String()
+
+	session := shared.Session{
+		Uid: user.ID,
+		// 24 horas
+		ExpiryTime: time.Now().Add(time.Hour * 24),
+	}
+
+	shared.Sessions[sessionToken] = session
+
+	claims := shared.Payload{
+		MapClaims: jwt.MapClaims{
+			"iat": jwt.NewNumericDate(time.Now()),                       // issued at,
+			"eat": jwt.NewNumericDate(time.Now().Add(30 * time.Minute)), // expired at - tiempo que va a durar el token
+		},
+		Session: sessionToken,
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)

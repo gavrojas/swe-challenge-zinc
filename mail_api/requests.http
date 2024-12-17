@@ -1,9 +1,19 @@
 #? Users
+
 GET http://localhost:8080/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZWF0IjoxNzM0NDA2NzgyLCJpYXQiOjE3MzQ0MDQ5ODJ9LCJzZXNzaW9uIjoiOThjODFiNTctNDEwMy01Y2RjLWE4NWEtYmI0YTU2YzBjZmNkIn0.-_XS1oTGYWdPDOfX05QBSCek-5pXopyPjlbLI7s1TDE
 
 ###
+POST http://localhost:8080/emails
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZWF0IjoxNzM0NDA3MTk4LCJpYXQiOjE3MzQ0MDUzOTh9LCJzZXNzaW9uIjoiOThjODFiNTctNDEwMy01Y2RjLWE4NWEtYmI0YTU2YzBjZmNkIn0.tCy-xXNIBSG8G3xmaX8PriEm_dC93xlh0QYytXF4nzw
+
+{
+  "term":"text/plain; charset=ANSI_X3.4-1968",
+  "field":"content_type"
+}
+###
 GET http://localhost:8080/users/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZWF0IjoxNzMxNjMyNjg4LCJpYXQiOjE3MzE2MzI2Mjh9LCJzZXNzaW9uIjoiOThjODFiNTctNDEwMy01Y2RjLWE4NWEtYmI0YTU2YzBjZmNkIn0.-LP2BSdUkDbVhU-CmynR40HhDmyrBK1wKIVnhy1AZ20
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlYXQiOjE3MzM4OTM1NjEsImlhdCI6MTczMzg5MTc2MSwidXNlcm5hbWUiOiJHYWJpMSJ9.Y_pIccznfx8Dm7cll0XOK2h-ZiOc0hwPo3bAuWKsFQs
 
 
 ###
@@ -16,7 +26,7 @@ POST http://localhost:8080/auth/register
 Content-Type: application/json
 
 {
-  "username":"Gabi9",
+  "username":"Gabi2",
   "password":"12345"
 }
 
@@ -25,7 +35,7 @@ POST http://localhost:8080/auth/login
 Content-Type: application/json
 
 {
-  "username":"Gabi9",
+  "username":"Gabi1",
   "password":"12345"
 }
 

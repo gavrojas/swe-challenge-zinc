@@ -3,7 +3,7 @@ package shared
 import "time"
 
 type Session struct {
-	Uid        uint
+	Uid        string
 	ExpiryTime time.Time
 }
 

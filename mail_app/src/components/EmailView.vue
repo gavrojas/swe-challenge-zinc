@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { defineProps } from 'vue';
   import { useEmailStore } from '@/stores/emails'
-  import type { EmailDocument } from '@/types/emails';
+  import type { EmailDocument } from '@/types';
 
   const emailStore = useEmailStore()
   defineProps<{ selectedEmail: EmailDocument | null }>()

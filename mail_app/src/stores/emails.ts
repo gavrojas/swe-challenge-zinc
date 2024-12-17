@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia';
-import type { EmailDocument } from '@/types/emails';
-import { useZincService } from '@/services/zinc'
+import type { EmailDocument } from '@/types';
+import { useZincService } from '@/services/utils'
+
+const { apiHandleEmails } = useZincService()
 
 export const useEmailStore = defineStore('email', {
     state: () => ({
@@ -8,44 +10,26 @@ export const useEmailStore = defineStore('email', {
         error: null as string | null,
         folders: [
             'all_documents',
-            'calendar',
-            'deleted_items',
-            'eol',
             'inbox',
-            'nymex',
-            'reuters',
-            'tasks',
-            'tradecounts',
-            'associate_prc',
-            'charges',
-            'discussion_threads',
-            'espeed',
-            'kiodex',
-            'offline',
             'sent',
-            'to_do',
-            'tss',
-            'broker_client',
-            'contacts',
-            'emetra',
-            'hs',
-            'natsource',
-            'origination',
             'sent_items',
-            'tq',
+            'deleted_items',
+            'discussion_threads',
+            'tasks',
+            'calendar',
+            'contacts',
         ],
     }),
     actions: {
-        async loadEmails(userEmail: string) {
-            const { emails, error, fetchEmails } = useZincService()
+        async loadEmails(userEmail: string, field: string) {
             try {
-            await fetchEmails(userEmail)
-            this.emails = emails.value
-            this.error = error.value
+                const data = { term: userEmail, field: field };
+                const fetchedEmails = await apiHandleEmails('/ByField', {method: 'POST', data },)
+                this.emails = fetchedEmails
             } catch (err) {
             this.error = err instanceof Error ? err.message : 'Error loading emails'
             console.error('Error loading emails:', this.error)
             }
         },
-        },
+    },
 });

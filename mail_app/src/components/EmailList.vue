@@ -5,7 +5,7 @@
   const emailStore = useEmailStore();
   // Cargar los emails al montar el componente
   onMounted(() => {
-    emailStore.loadEmails('david.delainey@enron.com') // Reemplaza 'user@example.com' por el correo del usuario
+    emailStore.loadEmails('mjones7@txu.com', 'from') // Reemplaza 'user@example.com' por el correo del usuario
   })
 </script>
 

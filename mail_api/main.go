@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"mail_indexer_zinc/auth"
+	"mail_indexer_zinc/emails"
+	"mail_indexer_zinc/shared"
 	"mail_indexer_zinc/users"
 	"mail_indexer_zinc/zinc"
 	"net/http"
@@ -22,6 +24,7 @@ func main() {
 	// Instanciar el router con chi
 	r := chi.NewRouter()
 
+	r.Use(shared.Cors)
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 	r.Use(middleware.RequestID)
@@ -29,6 +32,7 @@ func main() {
 	// Rutas
 	users.AddUserRoutes(r)
 	auth.AddAuthRoutes(r)
+	emails.AddEmailsRoutes(r)
 
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Server running"))

@@ -4,7 +4,7 @@
   import EmailList from '@/components/EmailList.vue'
   import EmailView from '@/components/EmailView.vue'
   import { useEmailStore } from '@/stores/emails'
-  import type { EmailDocument } from '@/types/emails'
+  import type { EmailDocument } from '@/types'
 
   // Obtener el store de correos
   const emailStore = useEmailStore()
