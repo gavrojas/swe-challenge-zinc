@@ -28,16 +28,3 @@ services:
     restart: on-failure
     volumes:
       - ./mail_tools:/usr/src/app
-  app:
-    build:
-      context: ../mail_app
-    environment:
-      - VITE_API_URL=${API_URL}
-    ports:
-      - 8080:3000
-    restart: on-failure
-    depends_on:
-      - api
-    volumes:
-      - ./mail_app:/usr/src/app
-      - /usr/src/app/node_modules

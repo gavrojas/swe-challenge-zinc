@@ -8,7 +8,7 @@
 </script>
 
 <template>
-  <div class="w-64 bg-gray-100 h-screen p-4">
+  <div class="w-64 bg-gray-100 h-fit p-4">
     <ul>
       <li
         v-for="folder in folders"

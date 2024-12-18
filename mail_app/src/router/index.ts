@@ -49,9 +49,6 @@ router.beforeEach((to, from, next) => {
   if (authStore.isLoggedIn && (to.name === 'login' || to.name === 'register')) {
     return next({ name: 'home' });
   }
-  // if (authStore.isLoggedIn && to.name === 'dashboard' && from.name === 'peopleData') {
-  //   return next();
-  // }
   next();
 })
 

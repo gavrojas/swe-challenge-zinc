@@ -29,7 +29,7 @@ export const useAuthStore = defineStore('auth', () => {
     console.log("voy a imprimir eat ");
     console.log("payload mapclaims eat",payload.MapClaims.eat);
     console.log("terminé de imprimir eat ");
-    // La diferencia entre sessionStorage y localStorage es que sessionStorage se limpia cuando se cierra el navegador, mientras que localStorage no, se va a quedar ahi poara siempre hasta que el sitio borre eso. 
+ 
     const now = new Date()
     const diff = payload.MapClaims.eat * 1000 - now.getTime()
     console.log(diff);

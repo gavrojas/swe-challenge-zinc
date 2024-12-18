@@ -14,8 +14,6 @@ func SearchMailsByField(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	req.MaxResults = 10
-
 	searchQuery := map[string]interface{}{
 		"search_type": "match",
 		"query": map[string]interface{}{

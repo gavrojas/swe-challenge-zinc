@@ -33,3 +33,8 @@ export interface EmailDocument {
   user: string;
   folder_path: string;
 }
+
+export interface SearchPayload {
+  query: string;
+  field: string;
+}

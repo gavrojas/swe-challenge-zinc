@@ -54,12 +54,13 @@ export const useZincService = () => {
       }
 
       const data = await response.json()
-      return data.hits.hits.map((hit: any) => hit._source)
+      
+      return data
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Error fetching emails'
       console.error("Error fetching emails:", error.value)
     }
   }
 
-  return { emails, error, apiHandleEmails }
+  return { emails, error, apiHandleEmails}
 }
