@@ -17,7 +17,7 @@ func Cors(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		allowedOrigins := []string{
 			"http://localhost:5173",
-			// "",
+			"https://swe-challenge-zinc-gavrojas.vercel.app",
 		}
 
 		origin := r.Header.Get("Origin")
