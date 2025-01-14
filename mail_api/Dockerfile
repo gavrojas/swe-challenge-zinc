@@ -15,8 +15,8 @@ ENV PORT=${PORT} \
     GIN_MODE=${GIN_MODE}
 
 COPY . .
-COPY ./fullchain.pem /etc/ssl/certs/ 
-COPY ./privkey.pem /etc/ssl/private/
+COPY fullchain.pem /etc/ssl/certs/ 
+COPY privkey.pem /etc/ssl/private/
 
 RUN go build -o main .
 
