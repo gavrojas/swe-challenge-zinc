@@ -18,7 +18,8 @@ if (route.query.registered) {
 
 async function login() {
   try {
-    const response = await fetch('http://localhost:8080/auth/login', {
+    // const response = await fetch('http://localhost:8080/auth/login', {
+    const response = await fetch('https://zinc-gavrojas.serveftp.com/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(loggedUser.value),
