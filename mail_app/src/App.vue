@@ -15,7 +15,7 @@
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen w-full">
+  <div class="flex flex-col h-screen w-full">
     <header class="flex items-center justify-between p-4 bg-gray-800 text-white w-full">
       <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="50" height="50" />
       <p class="hidden md:block text-center text-lg font-bold">MAIL APP</p>
@@ -33,15 +33,17 @@
       </div>
     </main>
     <footer class="bg-gray-800 text-white p-2">
-      <div class="flex justify-center space-x-4">
-        <a href="https://www.linkedin.com/in/gavrojas-dev" target="_blank" class="hover:underline">
-          <i class="fab fa-linkedin"></i>
-          @gavrojas-dev</a>
-        <a href="https://github.com/gavrojas">
-          <i class="fab fa-github"></i>
-          @gavrojas</a>
-      </div>
-      <p class="text-center mt-2">Developed by 'Gabriela Rojas' with 🩵, ☕ and good music.</p>
+      <v-container>
+        <div class="flex justify-center space-x-4">
+          <a href="https://www.linkedin.com/in/gavrojas-dev" target="_blank" class="hover:underline">
+            <i class="fab fa-linkedin"></i>
+            @gavrojas-dev</a>
+          <a href="https://github.com/gavrojas">
+            <i class="fab fa-github"></i>
+            @gavrojas</a>
+        </div>
+        <p class="text-center mt-2">Developed by 'Gabriela Rojas' with 🩵, ☕ and good music.</p>
+    </v-container>
     </footer>
   </div>
 </template>

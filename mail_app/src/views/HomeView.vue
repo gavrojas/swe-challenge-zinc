@@ -37,7 +37,6 @@
 </script>
 
 <template>
-  <!-- <div class="flex"> -->
     <Sidebar @updateSearchWithFolders="updateSearchWithFolders" />
     <div class="flex w-full">
       <EmailList @selectEmail="selectEmail" @clearSelectedEmail="clearSelectedEmail"/>
@@ -51,5 +50,4 @@
         <p v-else>Please select an email to view its details.</p>
       </div>
     </div>
-  <!-- </div> -->
 </template>
