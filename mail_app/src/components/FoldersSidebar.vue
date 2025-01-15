@@ -5,6 +5,8 @@
 
   const emailStore = useEmailStore();
   const folders = computed(() => emailStore.folders);
+
+  const emit = defineEmits(['updateSearchWithFolders']);
 </script>
 
 <template>
@@ -14,7 +16,7 @@
         v-for="folder in folders"
         :key="folder"
         class="flex items-center p-2 cursor-pointer hover:bg-gray-200"
-        @click="$router.push({ name: 'folder', params: { id: folder } })"
+        @click="emit('updateSearchWithFolders', { query: folder, field: 'folder_path' })"
       >
         <span class="mr-2">📁</span>
         <span>{{ folder }}</span>

@@ -24,15 +24,9 @@ export const useAuthStore = defineStore('auth', () => {
 
   function setSession(tokenStr: string, redirectToHome: boolean = true ) {
     const payload = jwtDecode(tokenStr) as JWTPayload
-    console.log(payload);
-    console.log(payload.MapClaims.eat);
-    console.log("voy a imprimir eat ");
-    console.log("payload mapclaims eat",payload.MapClaims.eat);
-    console.log("terminé de imprimir eat ");
  
     const now = new Date()
     const diff = payload.MapClaims.eat * 1000 - now.getTime()
-    console.log(diff);
 
     // guardamos token en session storage para no perder el login mientras esté activo 
     sessionStorage.setItem('token', tokenStr)
@@ -66,8 +60,6 @@ export const useAuthStore = defineStore('auth', () => {
   function isTokenExpired(): boolean {
     if (!session.value) return true
     const payload = jwtDecode(session.value) as JWTPayload
-    console.log(payload);
-    console.log(session.value);
     const now = new Date()
     return payload.MapClaims.eat * 1000 <= now.getTime()
   }
@@ -79,8 +71,6 @@ export const useAuthStore = defineStore('auth', () => {
     }
     try {
       const payload = jwtDecode(session.value) as JWTPayload
-      console.log(payload);
-      console.log(session.value);
       if (!payload.MapClaims || !payload.MapClaims.eat) {
         clearSession()
         return ''

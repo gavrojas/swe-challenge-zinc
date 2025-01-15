@@ -8,8 +8,8 @@ const isRegistered = ref(false)
 
 async function register() {
   try {
-    // const response = await fetch('http://localhost:8080/auth/register', {
-    const response = await fetch('https://zinc-gavrojas.serveftp.com/auth/register', {
+    const response = await fetch('http://localhost:8080/auth/register', {
+    // const response = await fetch('https://zinc-gavrojas.serveftp.com/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(registeredUser.value),

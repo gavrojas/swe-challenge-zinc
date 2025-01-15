@@ -5,4 +5,5 @@ type SearchRequest struct {
 	Field      string `json:"field"`
 	From       int    `json:"from"`
 	MaxResults int    `json:"max_results"`
+	SearchType string `json:"search_type"`
 }

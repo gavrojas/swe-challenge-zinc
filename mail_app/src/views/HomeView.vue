@@ -4,7 +4,7 @@
   import EmailList from '@/components/EmailList.vue'
   import EmailView from '@/components/EmailView.vue'
   import { useEmailStore } from '@/stores/emails'
-  import type { EmailDocument } from '@/types'
+  import type { EmailDocument, SearchPayload } from '@/types'
 
   // Obtener el store de correos
   const emailStore = useEmailStore()
@@ -17,24 +17,39 @@
     selectedEmail.value = email
   }
 
+  const clearSelectedEmail = () => {
+    selectedEmail.value = null; // Limpiar el email seleccionado
+  }
+
   // Comprobación si hay correos
   const hasEmails = computed(() => emailStore.emails.length > 0)
+
+  const updateSearchWithFolders = (payload: SearchPayload) => {
+    emailStore.searchQuery = payload.query;
+    emailStore.searchField = payload.field;
+    emailStore.itemsPerPage = 0; 
+    emailStore.itemsPerPage++;
+    emailStore.loadEmails();
+
+    clearSelectedEmail()
+  };
+
 </script>
 
 <template>
-  <div class="flex">
-    <Sidebar />
-    <div class="flex">
-      <EmailList @selectEmail="selectEmail" />
+  <!-- <div class="flex"> -->
+    <Sidebar @updateSearchWithFolders="updateSearchWithFolders" />
+    <div class="flex w-full">
+      <EmailList @selectEmail="selectEmail" @clearSelectedEmail="clearSelectedEmail"/>
       
       <!-- Solo muestra EmailView si hay correos y uno está seleccionado -->
       <EmailView :selectedEmail="selectedEmail" v-if="selectedEmail" />
       
       <!-- Mensaje si no hay correos disponibles -->
-      <div v-else class="p-4 text-gray-500">
+      <div v-else class="p-4 text-gray-500 w-full">
         <p v-if="!hasEmails">No emails available. Please load emails.</p>
         <p v-else>Please select an email to view its details.</p>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>

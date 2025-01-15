@@ -9,6 +9,9 @@ export const useEmailStore = defineStore('email', {
         emails: [] as EmailDocument[],
         error: null as string | null,
         totalResults: 0,
+        itemsPerPage: 0, 
+        searchQuery: '', 
+        searchField: 'body', // por defecto
         folders: [
             'all_documents',
             'inbox',
@@ -22,9 +25,12 @@ export const useEmailStore = defineStore('email', {
         ],
     }),
     actions: {
-        async loadEmails(userEmail: string, field: string, maxResults: number) {
+        async loadEmails() {
             try {
-                const data = { term: userEmail, field: field, max_results: maxResults };
+                const termOfSearch = this.searchQuery === '' ? '' : this.searchQuery;
+                const maxResults = this.itemsPerPage + 1;
+                const searchType = termOfSearch === '' ? 'match_all' : 'match'
+                const data = { term: termOfSearch, field: this.searchField, max_results: 30 * maxResults, search_type: searchType };
                 const response = await apiHandleEmails('/ByField', {method: 'POST', data },)
 
                 this.emails = response.hits.hits.map((hit: any) => hit._source);

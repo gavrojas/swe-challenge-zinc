@@ -3,8 +3,8 @@ import { useAuthStore } from '@/stores/auth'
 import type { EmailDocument } from '@/types'
 import { ref } from 'vue'
 
-// const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/emails'
-const BASE_URL = import.meta.env.VITE_API_URL || 'https://zinc-gavrojas.serveftp.com/emails'
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/emails'
+// const BASE_URL = import.meta.env.VITE_API_URL || 'https://zinc-gavrojas.serveftp.com/emails'
 
 type ApiCallOptions = OptionsApiCall | undefined
 export const useZincService = () => {
