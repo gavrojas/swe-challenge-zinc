@@ -15,7 +15,7 @@ func SearchMailsByField(w http.ResponseWriter, r *http.Request) {
 	}
 
 	searchQuery := map[string]interface{}{
-		"search_type": "match",
+		"search_type": req.SearchType,
 		"query": map[string]interface{}{
 			"term":  req.Term,
 			"field": req.Field,

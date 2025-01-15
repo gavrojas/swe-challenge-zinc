@@ -1,15 +1,19 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, watch } from 'vue'
 
   const emit = defineEmits(['updateSearch']);
 
   const searchQuery = ref(''); // Variable para el campo de búsqueda
-  const searchField = ref('from'); // Campo de búsqueda seleccionado
+  const searchField = ref('body'); // Campo de búsqueda seleccionado
   const searchFields = ['from', 'to', 'body', 'subject']; // Opciones para el select
 
   const loadEmails = () => {
     emit('updateSearch', { query: searchQuery.value, field: searchField.value });
   };
+
+  watch(searchField, () => {
+    loadEmails(); // Cargar correos cuando cambia el campo de búsqueda del select
+  });
 </script>
 <template>
   <!-- Campo de búsqueda -->

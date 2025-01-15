@@ -43,14 +43,17 @@ func main() {
 	})
 
 	// Puerto en el que escucha el servidor
+	// port := ":8080"
 	port := ":443"
 	certFile := "/etc/ssl/certs/fullchain.pem"
 	keyFile := "/etc/ssl/private/privkey.pem"
 	fmt.Printf("Server running on %s\n", port)
 
+	// if err := http.ListenAndServe(port, r); err != nil {
 	if err := http.ListenAndServeTLS(port, certFile, keyFile, r); err != nil {
 		log.Fatalf("Error starting server: %s", err)
 	}
 
+	// http.ListenAndServe(":8080", r)
 	http.ListenAndServe(":443", r)
 }
