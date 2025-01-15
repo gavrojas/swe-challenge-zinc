@@ -8,6 +8,7 @@ services:
       - '4080:4080'
     volumes:
       - ./data:/var/lib/zinc
+    restart: on-failure
 
   api:
     build:

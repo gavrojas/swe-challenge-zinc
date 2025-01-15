@@ -5,3 +5,7 @@ enron_mail_20110402_test
 mail_tools/.env
 swe-challenge-pair.pem
 notes.txt
+mail_api/fullchain.pem
+mail_api/privkey.pem
+mail_tools/fullchain.pem
+mail_tools/privkey.pem
