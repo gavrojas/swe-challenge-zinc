@@ -20,13 +20,6 @@
     loadEmails(); // Cargar los emails con los nuevos parámetros
   };
 
-  const updateSearchWithFolders = (payload: SearchPayload) => {
-    emailStore.searchQuery = payload.query;
-    emailStore.searchField = payload.field;
-    emailStore.itemsPerPage = 0; // Reiniciar la paginación
-    loadEmails(); // Cargar los emails con los nuevos parámetros
-  };
-
   // Cargar los emails al montar el componente
   onMounted(() => {
     emailStore.itemsPerPage = 0;
@@ -42,7 +35,7 @@
 
     <SearchCard @updateSearch="updateSearch" />
 
-    <div @updateSearchWithFolders="updateSearchWithFolders" class="overflow-y-auto h-full max-h-[calc(100vh-200px)]">
+    <div class="overflow-y-auto h-full max-h-[calc(100vh-200px)]">
       <div
         v-for="email in emailStore.emails"
         :key="email.message_id"

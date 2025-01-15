@@ -14,8 +14,8 @@ services:
     build:
       context: ../mail_api
       args:
-        - PORT=:8080
-        # - PORT=:443
+        # - PORT=:8080
+        - PORT=:443
         - GIN_MODE=release
     environment:
       - PORT=${ZINC_PORT}
@@ -24,8 +24,8 @@ services:
       - ZINC_FIRST_ADMIN_USER=${ZINC_FIRST_ADMIN_USER}
       - ZINC_FIRST_ADMIN_PASSWORD=${ZINC_FIRST_ADMIN_PASSWORD}
     ports:
-      - 8080:8080
-      # - 443:443
+      # - 8080:8080
+      - 443:443
     depends_on:
       - zinc
     restart: on-failure
