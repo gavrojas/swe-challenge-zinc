@@ -6,16 +6,20 @@ Este proyecto tiene como objetivo indexar y visualizar una base de datos de corr
 ## ¿Qué incluye el proyecto?
 
 ### 🔵 Parte 1: Indexar Base de Datos de Correo Electrónico
-Se indexaron los contenidos del dataset [Enron Mail Dataset](http://www.cs.cmu.edu/~enron/enron_mail_20110402.tgz) (423MB) en ZincSearch usando un programa en GO. 
+- [x] Se indexaron los contenidos del dataset [Enron Mail Dataset](http://www.cs.cmu.edu/~enron/enron_mail_20110402.tgz) (423MB) en ZincSearch usando un programa en GO. 
 
 ### 🟣 Parte 2: Profiling
-Se realizó profilling al indexador siguiendo la documentación de GO [Profiling](https://go.dev/doc/diagnostics#profiling) y se generaron gráficos para cpu, memoria, y go routines. 
+- [x] Se realizó profilling al indexador siguiendo la documentación de GO [Profiling](https://go.dev/doc/diagnostics#profiling) y se generaron gráficos para cpu, memoria, y go routines. 
 
 ### 🟡 Parte 3: Visualizador
-Se creó una interfaz simple con Vue, y tailwind para visualizar y buscar contenidos. 
+- [x] Se creó una interfaz simple con Vue, y tailwind para visualizar y buscar contenidos. 
 
-### 🟡 Opcional Parte 5: Despliegue
-El backend con GO y la base de datos con ZincSearch se encuentra desplegadas en una instancia AWS EC2 y el frontent con Vue se encuentra desplegado con Vercel. 
+### 🟢 Parte 4: Optimización (opcional)
+- [ ] *En progreso* - Usar el profilling de la parte 2 para optimizar mi código y documentar las mejoras de optimización que encontré. 
+
+### 🟠 Parte 5: Despliegue (opcional)
+- [x] El backend con GO y la base de datos con ZincSearch se encuentra desplegadas en una instancia AWS EC2 y el frontent con Vue se encuentra desplegado con Vercel. 
+
 El proyecto puede visualizarse en una URL segura en: [https://swe-challenge-zinc-gavrojas.vercel.app/](https://swe-challenge-zinc-gavrojas.vercel.app/)
 
 ## Tecnologías Utilizadas
