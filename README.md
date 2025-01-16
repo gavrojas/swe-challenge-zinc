@@ -5,14 +5,18 @@ Este proyecto tiene como objetivo indexar y visualizar una base de datos de corr
 
 ## ¿Qué incluye el proyecto?
 
-### Parte 1: Indexar Base de Datos de Correo Electrónico
+### 🔵 Parte 1: Indexar Base de Datos de Correo Electrónico
 Se indexaron los contenidos del dataset [Enron Mail Dataset](http://www.cs.cmu.edu/~enron/enron_mail_20110402.tgz) (423MB) en ZincSearch usando un programa en GO. 
 
-### Parte 2: Profiling
+### 🟣 Parte 2: Profiling
 Se realizó profilling al indexador siguiendo la documentación de GO [Profiling](https://go.dev/doc/diagnostics#profiling) y se generaron gráficos para cpu, memoria, y go routines. 
 
-### Parte 3: Visualizador
+### 🟡 Parte 3: Visualizador
 Se creó una interfaz simple con Vue, y tailwind para visualizar y buscar contenidos. 
+
+### 🟡 Opcional Parte 5: Despliegue
+El backend con GO y la base de datos con ZincSearch se encuentra desplegadas en una instancia AWS EC2 y el frontent con Vue se encuentra desplegado con Vercel. 
+El proyecto puede visualizarse en una URL segura en: [https://swe-challenge-zinc-gavrojas.vercel.app/](https://swe-challenge-zinc-gavrojas.vercel.app/)
 
 ## Tecnologías Utilizadas
 - **Lenguaje Backend:** Go
@@ -20,7 +24,7 @@ Se creó una interfaz simple con Vue, y tailwind para visualizar y buscar conten
 - **API Router:** chi
 - **Interfaz:** Vue 3, Pinia, Vue Router, Vuetify,
 - **CSS:** Tailwind
-- **Despliegue** Docker
+- **Despliegue** Docker, AWS EC2, Vercel 
 
 ## Estructura del Proyecto
 
@@ -125,14 +129,17 @@ mail_api/
 zinc/
 ├── config/
 │   └── config.go
-├── handlers/
-│   └── indexer.go
-├── models/
-│   └── email.go
-├── services/
-│   └── zinc_service.go
+├── data/
+│   └── enron_mail_20110402
+├── mails/
+│   └── mails.go
 ├── utils/
-│   └── helpers.go
+│   └── fileUtils.go
+├── zinc/
+│   ├── bulk.go
+│   ├── client.go
+│   ├── index.go
+│   └── types.go
 ├── go.mod
 └── main.go
 ```
