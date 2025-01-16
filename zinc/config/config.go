@@ -7,5 +7,6 @@ const (
 	ZincUsername = "admin"
 	ZincPassword = "Complexpass#123"
 	BatchSize    = 10
-	NumWorkers   = 1 
+	NumWorkers   = 1
+	// NumWorkers   = 4 -> más recursos
 )
