@@ -17,7 +17,7 @@ func ProcessEmails(mailDir string) error {
 	totalEmails := 0
 	var batch []zinc.EmailDocument
 
-	files := make(chan []zinc.EmailDocument, 1000)
+	files := make(chan []zinc.EmailDocument, 1000) /* Canal que transportará los lotes de correos */
 
 	// Lanzar trabajadores
 	for i := 0; i < config.NumWorkers; i++ {
@@ -25,7 +25,7 @@ func ProcessEmails(mailDir string) error {
 		go ProcessFiles(i, files, &wg)
 	}
 
-	// Explorar el directorio y pasar los archivos al canal
+	// explore the directory and send the files in the chan
 	go func() {
 		err := filepath.Walk(mailDir, func(path string, info os.FileInfo, err error) error {
 			path = filepath.ToSlash(path)
@@ -50,12 +50,12 @@ func ProcessEmails(mailDir string) error {
 			}
 
 			// Extract user and folder information
-			relPath, _ := filepath.Rel(mailDir, path)
+			relPath, _ := filepath.Rel(mailDir, path) /*allen-p/contacts*/
 			pathParts := strings.Split(relPath, string(filepath.Separator))
 
 			if len(pathParts) >= 2 {
 				email.User = pathParts[0]
-				email.FolderPath = strings.Join(pathParts[1:len(pathParts)-1], "/")
+				email.FolderPath = strings.Join(pathParts[1:len(pathParts)-1], "/") /*only contacts without emails*/
 			}
 
 			batch = append(batch, *email)

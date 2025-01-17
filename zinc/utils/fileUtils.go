@@ -1,4 +1,3 @@
-// utils/fileutils.go
 package utils
 
 import (
@@ -12,11 +11,11 @@ import (
 
 // Verifica si el archivo es un correo electrónico válido (por ejemplo, con extensión ".")
 func IsEmailFile(path string) bool {
-	path = filepath.ToSlash(path)
+	path = filepath.ToSlash(path) /* convertir \ y / */
 	fileName := filepath.Base(path)
 
 	// Condición simple: archivos que terminan con un punto
-	isEmail := strings.HasSuffix(fileName, ".") && fileName != "." && fileName != ".."
+	isEmail := strings.HasSuffix(fileName, ".") && fileName != "." && fileName != ".." /*<- Omitir directorios actuales y directorio atrás, archivos terminados con . */
 	return isEmail
 }
 

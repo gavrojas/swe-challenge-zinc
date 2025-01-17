@@ -20,8 +20,9 @@ var memprofile = flag.String("memprofile", "", "write memory profile to `file`")
 var goroutineprofile = flag.String("goroutineprofile", "", "write goroutine profile to `file`")
 
 func main() {
+	flag.Parse() /*Procesos flags*/
+
 	// Profilling cpu
-	flag.Parse()
 	if *cpuprofile != "" {
 		f, err := os.Create(*cpuprofile)
 		if err != nil {
@@ -60,7 +61,7 @@ func main() {
 		}
 	}
 
-	// Verificar que se haya pasado un argumento
+	/* Verificar que si se haya pasado un argumento para el directorio con la data*/
 	if len(os.Args) < 2 {
 		log.Fatalf("Usage: %s <data_directory>\n", os.Args[0])
 	}
