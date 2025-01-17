@@ -26,8 +26,10 @@
       </nav>
     </header>
     <main
-      class="flex flex-1 p-4">
-      <img v-if="!authStore.isLoggedIn" src="@/assets/login.svg" alt="Emails" class="hidden md:block w-1/2 h-full object-cover" />
+      class="flex flex-1 p-4 pt-20"
+      :class="{'md:ml-48': authStore.isLoggedIn, 'ml-0 align-center': !authStore.isLoggedIn}"
+      >
+      <img v-if="!authStore.isLoggedIn" src="@/assets/login.svg" alt="Emails" class="hidden md:block w-1/2 h-auto object-cover" />
       <div class="flex flex-1 w-full">
         <router-view class="flex-1" />
       </div>
