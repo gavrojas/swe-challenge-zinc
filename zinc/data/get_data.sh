@@ -9,6 +9,6 @@ TAR_FILE="enron_mail_20110402.tgz"
 
 # decompress de file in the directory
 echo "Decompressing the file $TAR_FILE ..."
-tar -zxf "$TAR_FILE" -C /var/lib/zinc/
+tar -zxf "$TAR_FILE" -C .
 
 echo "Decompression complete. Files extracted in the directory."
