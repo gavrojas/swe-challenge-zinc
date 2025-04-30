@@ -8,8 +8,8 @@ COPY go.mod go.sum ./
 
 RUN go mod download
 
-# ARG PORT=:8080 \
-ARG PORT=:443 \
+ARG PORT=:8080 \
+# ARG PORT=:443 \
     GIN_MODE=release
 
 ENV PORT=${PORT} \
