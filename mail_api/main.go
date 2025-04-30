@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	// loadEnvVars()
+	zinc.LoadEnv()
 
 	// Crear el índice de usuarios si no existe
 	if err := zinc.CreateIndex("users"); err != nil {

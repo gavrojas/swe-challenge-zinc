@@ -5,17 +5,34 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"mail_indexer_zinc/models"
 	"net/http"
+	"os"
+
+	"github.com/joho/godotenv"
 )
 
-const (
-	ZINC_URL          = "http://zinc:4080/api"
-	ZINC_INDEX_USERS  = "users"
-	ZINC_INDEX_EMAILS = "enron_emails"
-	ZINC_USERNAME     = "admin"
-	ZINC_PASSWORD     = "Complexpass#123"
+var (
+	ZINC_URL          string
+	ZINC_INDEX_USERS  string
+	ZINC_INDEX_EMAILS string
+	ZINC_USERNAME     string
+	ZINC_PASSWORD     string
 )
+
+func LoadEnv() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalf("Error loading .env file: %v", err)
+	}
+
+	ZINC_URL = os.Getenv("ZINC_URL")
+	ZINC_INDEX_USERS = os.Getenv("ZINC_INDEX_USERS")
+	ZINC_INDEX_EMAILS = os.Getenv("ZINC_INDEX_EMAILS")
+	ZINC_USERNAME = os.Getenv("ZINC_USERNAME")
+	ZINC_PASSWORD = os.Getenv("ZINC_PASSWORD")
+}
 
 func IndexExists(indexName string) (bool, error) {
 	existsQuery := fmt.Sprintf(`{
