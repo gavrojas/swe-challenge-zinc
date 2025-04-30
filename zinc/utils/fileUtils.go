@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 )
 
 // Verifica si el archivo es un correo electrónico válido (por ejemplo, con extensión ".")
@@ -33,6 +34,7 @@ func ParseEmailFile(filePath string) (*zinc.EmailDocument, error) {
 	email := &zinc.EmailDocument{}
 	content := string(fileBytes)
 	lines := strings.Split(content, "\n")
+	layout := "Mon, 2 Jan 2006 15:04:05 -0700 (MST)"
 
 	var bodyLines []string
 	var inBody bool
@@ -50,7 +52,7 @@ func ParseEmailFile(filePath string) (*zinc.EmailDocument, error) {
 				case "Message-ID":
 					email.MessageID = parts[1]
 				case "Date":
-					email.Date = parts[1]
+					email.Date, _ = time.Parse(layout, parts[1])
 				case "From":
 					email.From = parts[1]
 				case "To":

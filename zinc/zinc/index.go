@@ -25,7 +25,7 @@ func CreateZincIndex(name string) error {
 		"mappings": {
 			"properties": {
 				"message_id": {"type": "keyword"},
-				"date": {"type": "text"},
+				"date": {"type": "date"},
 				"from": {"type": "text"},
 				"to": {"type": "text"},
 				"subject": {"type": "text"},

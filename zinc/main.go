@@ -67,7 +67,7 @@ func main() {
 	}
 
 	// Obtener el directorio de datos desde los argumentos
-	dataDir := os.Args[4]
+	dataDir := os.Args[1]
 	mailDir := filepath.Join(dataDir, "/maildir")
 	fmt.Printf("mailDir: %s\n", mailDir)
 

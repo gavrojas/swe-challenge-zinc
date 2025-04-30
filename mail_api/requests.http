@@ -22,11 +22,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZ
 
 
 ###
-POST http://localhost:8080/auth/register
+POST https://zinc-gavrojas.serveftp.com/auth/register
 Content-Type: application/json
 
 {
-  "username":"Gabi2",
+  "username":"Gabi1",
   "password":"12345"
 }
 

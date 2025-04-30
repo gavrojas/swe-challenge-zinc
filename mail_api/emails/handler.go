@@ -22,7 +22,11 @@ func SearchMailsByField(w http.ResponseWriter, r *http.Request) {
 		},
 		"from":        req.From,
 		"max_results": req.MaxResults,
-	}
+		"sort": map[string]interface{}{
+			"date": map[string]interface{}{
+				"order": "desc",
+			},
+		}}
 
 	searchBody, err := json.Marshal(searchQuery)
 	if err != nil {
