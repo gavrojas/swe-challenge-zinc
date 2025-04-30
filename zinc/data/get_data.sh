@@ -12,3 +12,5 @@ echo "Decompressing the file $TAR_FILE ..."
 tar -zxf "$TAR_FILE" -C data/
 
 echo "Decompression complete. Files extracted in the directory."
+ls -la . 
+ls -la data/
